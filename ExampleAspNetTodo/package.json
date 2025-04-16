@@ -12,5 +12,8 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.1.4",
     "tailwindcss": "^4.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^9.24.0"
   }
 }
