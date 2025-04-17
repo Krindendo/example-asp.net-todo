@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExampleAspNetTodo</title>
+    <link rel="stylesheet" href="~/lib/flowbite/dist/css/flowbite.min.css" />
+    <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
+</head>
+<body class="min-h-screen m-0 grid grid-rows-[1fr_auto]">
+    <div class="min-h-full">
+        @RenderBody()
+    </div>
+
+    <footer class="border-top w-full min-h-10 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+        <div class="container flex justify-end items-center">
+            &copy; 2025 - ExampleAspNetTodo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/flowbite/dist/js/flowbite.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
