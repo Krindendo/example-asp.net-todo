@@ -31,3 +31,8 @@
 body{
     @apply font-body;
 }
+
+.dt-input {
+    padding-right: 2rem !important;
+    padding-left: 4px !important;
+}
