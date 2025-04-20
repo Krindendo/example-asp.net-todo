@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using ExampleAspNetTodo.Data;
 using ExampleAspNetTodo.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,22 @@ namespace ExampleAspNetTodo.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult DataTable()
+        {
+            var users = MockUserData.GetUsers();
+            return View(users);
+        }
+
+        public IActionResult UserInfo(int id)
+        {
+            var user = MockUserData.GetUsers().FirstOrDefault(u => u.Id == id);
+            if (user == null)
+            {
+                return NotFound(new { message = $"User with ID {id} not found." });
+            }
+            return View(user);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

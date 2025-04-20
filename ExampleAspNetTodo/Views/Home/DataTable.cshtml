@@ -1,0 +1,43 @@
+﻿@model List<UserViewModel>
+
+@{
+    ViewData["Title"] = "Data table";
+}
+
+<section class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <table id="userDataTable" class="dataTable display stripe" width="100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align: center" title="@item.Id">@item.Id</td>
+                    <td style="text-align: left" title="@item.Name">@item.Name</td>
+                    <td style="text-align: left" title="@item.Email">@item.Email</td>
+                    <td style="text-align:center">
+                        <a asp-controller="Home" asp-action="UserInfo" asp-route-id="@item.Id">
+                            <i class="fa fa-book"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+
+
+@section Scripts {
+    <script>
+        new DataTable('#userDataTable');
+    </script>
+}
