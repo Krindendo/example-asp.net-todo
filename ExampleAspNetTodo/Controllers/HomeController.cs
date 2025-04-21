@@ -40,6 +40,33 @@ namespace ExampleAspNetTodo.Controllers
             return View(user);
         }
 
+        public IActionResult ProductCreate(int id)
+        {
+            var user = MockUserData.GetUsers().FirstOrDefault(u => u.Id == id);
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult ProductCreate(ProductViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(HomeController.Index));
+            }
+            return View();
+        }
+        public IActionResult ProductCreateControlHome()
+        {
+            return PartialView();
+        }
+
+        public IActionResult ProductCreateControlHomeTable()
+        {
+            var users = MockProductData.GetProducts();
+            return PartialView(users);
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
