@@ -1763,9 +1763,9 @@
 body {
   font-family: var(--font-body);
 }
-.dt-input {
-  padding-right: 2rem !important;
-  padding-left: 4px !important;
+div.dt-container select.dt-input {
+  padding-right: 2rem;
+  padding-left: 4px;
 }
 @property --tw-translate-x {
   syntax: "*";
