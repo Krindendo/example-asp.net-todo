@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.15" />
+    <PackageReference Include="Tailwind.Extensions.AspNetCore" Version="1.0.0" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -26,8 +27,5 @@
 	  <Folder Include="wwwroot\lib\fontawesome\" />
 	</ItemGroup>
 
-	<Target Name="Tailwind" BeforeTargets="Compile">
-		<Exec Command="npm run css:build" />
-	</Target>
 
 </Project>
