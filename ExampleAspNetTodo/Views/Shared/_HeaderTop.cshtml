@@ -1,0 +1,38 @@
+﻿<header class="min-h-14 bg-sky-700">
+    <nav class="border-gray-200 px-4 lg:px-6 py-2.5">
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a asp-controller="Home" asp-action="Index" class="flex items-center">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap">Flowbite</span>
+            </a>
+            <div class="flex items-center lg:order-2">
+                <button id="avatarButton" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="flex justify-center items-center gap-1" type="button">
+                    <img class="w-10 h-10 rounded-full cursor-pointer" src="/images/profile-picture-5.jpg" alt="User dropdown">
+                    <p class="font-medium text-white">Bonnie Green</p>
+                </button>
+
+                <!-- Dropdown menu -->
+                <div id="userDropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+                    <div class="px-4 py-3 text-sm text-gray-900">
+                        <p>Bonnie Green</p>
+                        <p class="font-medium truncate">name@flowbite.com</p>
+                    </div>
+                    <ul class="py-2 text-sm text-gray-700" aria-labelledby="avatarButton">
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
+                        </li>
+                    </ul>
+                    <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
