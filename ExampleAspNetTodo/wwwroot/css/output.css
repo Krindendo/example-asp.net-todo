@@ -1384,6 +1384,11 @@
       height: 100%;
     }
   }
+  .md\:min-h-fit {
+    @media (width >= 48rem) {
+      min-height: fit-content;
+    }
+  }
   .md\:w-auto {
     @media (width >= 48rem) {
       width: auto;
