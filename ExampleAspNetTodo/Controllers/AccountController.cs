@@ -16,7 +16,7 @@ namespace ExampleAspNetTodo.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View(new AuthProcess { LoginViewModel = model });
             }
 
             if (model.Email == "admin" && model.Password == "password123")
@@ -26,7 +26,25 @@ namespace ExampleAspNetTodo.Controllers
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return View(model);
+            return View(new AuthProcess { LoginViewModel = model });
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View("Login");
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Login", new AuthProcess { RegisterViewModel = model });
+            }
+
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
