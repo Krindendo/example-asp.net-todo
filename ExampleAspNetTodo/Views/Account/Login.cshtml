@@ -2,7 +2,7 @@
 @{
 	Layout = "_LayoutEmpty";
 
-	var LoginViewData = new ViewDataDictionary<LoginViewModel>(ViewData)
+	var loginViewData = new ViewDataDictionary<LoginViewModel>(ViewData)
 			{
 				TemplateInfo = { HtmlFieldPrefix = "login" }
 			};
@@ -17,25 +17,25 @@
 
 <div id="block-container" class="block-container @(Model?.LoginViewModel is null ? "right-panel-active" : "")">
 	<div class="form-container sign-up-container">
-		<partial name="_RegisterPartialView" model="Model?.RegisterViewModel" view-data="registerViewData" />
+		@await Html.PartialAsync("_RegisterPartialView", Model?.RegisterViewModel, registerViewData)
 	</div>
 	<div class="form-container sign-in-container">
-		<partial name="_LoginPartialView" model="Model?.LoginViewModel" view-data="LoginViewData" />
+		@await Html.PartialAsync("_LoginPartialView", Model?.LoginViewModel, loginViewData)
 	</div>
-	<div class="overlay-container">
+	<div id="overlay-container" class="overlay-container">
 		<div class="overlay">
 			<div class="overlay-panel overlay-panel-left">
 				<div class="flex h-full w-full flex-col items-center justify-evenly gap-5 py-12 md:gap-20">
 					<h1 class="text-2xl font-bold text-white">Create Account</h1>
 					
-					<p class="text-lg font-medium text-white">Enter your personal details and start your journey with us</p>
+					<p class="text-lg font-medium text-white">Enter your personal details <br /> and start your journey with us</p>
 					<button type="button" class="mt-12 w-52 rounded-full border border-white px-5 py-3 text-center text-base font-medium text-white hover:border-primary-100 hover:text-primary-100 focus:ring-4 focus:outline-none focus:ring-primary-300" id="signInButton">Sign In</button>
 				</div>
 			</div>
 			<div class="overlay-panel overlay-panel-right">
 				<div class="flex h-full w-full flex-col items-center justify-evenly gap-5 py-12 md:gap-20">
 					<h1 class="text-2xl font-bold text-white">Welcome Back!</h1>
-					<p class="text-lg font-medium text-white">To keep connected with us please login with your personal info</p>
+					<p class="text-lg font-medium text-white">To keep connected with us please login with <br /> your personal info</p>
 					<button type="button" class="mt-12 w-52 rounded-full border border-white px-5 py-3 text-center text-base font-medium text-white hover:border-primary-100 hover:text-primary-100 focus:ring-4 focus:outline-none focus:ring-primary-300" id="signUpButton">Sign Up</button>
 				</div>
 			</div>
@@ -46,17 +46,29 @@
 
 
 @section Scripts {
+	<partial name="_ValidationScriptsPartial" />
 	<script>
 		(() => {
 			const signUpButton = document.getElementById("signUpButton");
 			const signInButton = document.getElementById("signInButton");
 			const container = document.getElementById("block-container");
+			const container1 = document.getElementById("overlay-container");
 
 			signUpButton.addEventListener("click", () => {
 				container.classList.add("right-panel-active");
+
+				container1.classList.add("animate");
+				setTimeout(() => {
+					container1.classList.remove("animate");
+				}, 1000);
+				
 			});
 			signInButton.addEventListener("click", () => {
 				container.classList.remove("right-panel-active");
+				container1.classList.add("animate");
+				setTimeout(() => {
+					container1.classList.remove("animate");
+				}, 1000);
 			});
 		})();
 	</script>

@@ -12,7 +12,7 @@ namespace ExampleAspNetTodo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel model)
+        public IActionResult Login([FromForm(Name = "login")] LoginViewModel model, string returnurl)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +36,7 @@ namespace ExampleAspNetTodo.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
+        public IActionResult Register([FromForm(Name = "register")] RegisterViewModel model, string returnurl)
         {
             if (!ModelState.IsValid)
             {
