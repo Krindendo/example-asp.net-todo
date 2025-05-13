@@ -1,0 +1,60 @@
+﻿.mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    display: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.mobile-menu-close {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+    z-index: 50;
+}
+
+.overlay-inner {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transform: translateX(0);
+    transition: transform .3s ease;
+}
+
+    .overlay-inner > ul {
+        flex: 0 0 100%;
+        list-style: none;
+        padding: 4rem 1rem;
+        overflow-y: auto;
+    }
+
+    .overlay-inner button,
+    .overlay-inner a {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: .5rem 0;
+        font-size: 1.1rem;
+        background: none;
+        border: none;
+        color: #333;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+        .overlay-inner a:hover,
+        .overlay-inner button:hover {
+            text-decoration: underline
+        }
+
+.submenu-panel .back a {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
