@@ -21,37 +21,38 @@
 
 .overlay-inner {
     display: flex;
-    width: 300%;
+    position: relative;
+    width: 200vw;
     height: 100%;
     transform: translateX(0);
     transition: transform .3s ease;
 }
 
     .overlay-inner > ul {
-        flex: 0 0 100%;
         list-style: none;
         padding: 4rem 1rem;
         overflow-y: auto;
-    }
-
-    .overlay-inner button,
-    .overlay-inner a {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: .5rem 0;
-        font-size: 1.1rem;
-        background: none;
-        border: none;
-        color: #333;
-        text-decoration: none;
-        cursor: pointer;
     }
 
         .overlay-inner a:hover,
         .overlay-inner button:hover {
             text-decoration: underline
         }
+
+        .menu-panel {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+.submenu-panel{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+}
 
 .submenu-panel .back a {
     font-weight: bold;

@@ -43,7 +43,7 @@
 			</li>
 		</ul>
 
-		<partial name="../Account/_HeaderProfilePartialView" />
+		<partial name="_HeaderProfilePartialView" />
 
 	</div>
 </nav>
@@ -53,39 +53,39 @@
 	<div id="inner" class="overlay-inner">
 
 		<!-- PANEL 0: ROOT -->
-		<ul>
+		<ul class="menu-panel">
 			<li>
-				<a asp-controller="Home" asp-action="Index" class="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0" aria-current="page">Home</a>
+				<a asp-controller="Home" asp-action="Index" class="block w-full py-4 px-3 text-primary-600" aria-current="page">Home</a>
 			</li>
-			<li>
-				<button data-panel="1" class="text-primary-600 inline-flex w-full items-center justify-between gap-1 rounded-sm px-3 py-2 md:border-0 md:p-0 md:w-auto md:hover:bg-transparent md:hover:text-primary-700" type="button">
-					Product
+			<li class="w-full">
+				<button data-panel="1" class="text-primary-600 inline-flex w-full items-center justify-between gap-1  px-3 py-4" type="button">
+					<p>Product</p>
+					<i class="fa-solid fa-angle-right text-md text-gray-500"></i>
+				</button>
+			</li>
+			<li class="w-full">
+				<button data-panel="2" class="text-primary-600 inline-flex w-full items-center justify-between gap-1 px-3 py-4" type="button">
+					<p>Product</p>
 					<i class="fa-solid fa-angle-right text-md text-gray-500"></i>
 				</button>
 			</li>
 			<li>
-				<button data-panel="2" class="text-primary-600 inline-flex w-full items-center justify-between gap-1 rounded-sm px-3 py-2 md:border-0 md:p-0 md:w-auto md:hover:bg-transparent md:hover:text-primary-700" type="button">
-					Product
-					<i class="fa-solid fa-angle-right text-md text-gray-500"></i>
-				</button>
+				<a asp-controller="Home" asp-action="Privacy" class="block py-4 px-3 text-primary-600 w-full hover:bg-gray-100">Privacy</a>
 			</li>
 			<li>
-				<a asp-controller="Home" asp-action="Privacy" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Privacy</a>
+				<a asp-controller="Home" asp-action="DataTable" class="block py-4 px-3 text-primary-600 w-full hover:bg-gray-100">DataTable</a>
 			</li>
 			<li>
-				<a asp-controller="Home" asp-action="DataTable" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">DataTable</a>
-			</li>
-			<li>
-				<a asp-controller="Account" asp-action="Login" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Login</a>
+				<a asp-controller="Account" asp-action="Login" class="block py-4 px-3 text-primary-600 w-full hover:bg-gray-100">Login</a>
 			</li>
 		</ul>
 
 		<ul class="submenu-panel">
 			<li class="back">
-				<a href="#" data-back="0">
+				<button class="submenu-panel-back-button" type="button">
 					<i class="fa-solid fa-angle-left text-md text-gray-500"></i>
 					Product
-				</a>
+				</button>
 			</li>
 			<li>
 				<a asp-controller="Home" asp-action="ProductCreate" class="block px-4 py-2 hover:bg-gray-100">Product Create</a>
@@ -98,15 +98,15 @@
 			</li>
 		</ul>
 
-		<ul class="submenu-panel">
+		<ul class="submenu-panel z-10 opacity-0">
 			<li class="back">
 				<a href="#" data-back="0">
 					<i class="fa-solid fa-angle-left text-md text-gray-500"></i>
 					Product
 				</a>
 			</li>
-				<a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
 			<li>
+				<a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
 			</li>
 			<li>
 				<a asp-controller="Home" asp-action="ProductCreate" class="block px-4 py-2 hover:bg-gray-100">Product Create</a>
@@ -125,9 +125,11 @@
 		const mobileMenu = document.getElementById('mobile-menu');
 		const closeBtn = document.getElementById('close-btn');
 		const inner = document.getElementById('inner');
+		const backBtns = document.getElementsByClassName('submenu-panel-back-button');
+
 
 		// Calculate width based on panels
-		inner.style.width = `${inner.children.length * 100}%`;
+		//inner.style.width = `${inner.children.length * 100}%`;
 
 		// Open menu
 		hamburger.addEventListener('click', () => {
@@ -142,19 +144,20 @@
 			mobileMenu.setAttribute('aria-hidden', 'true');
 		});
 
+		// Back menu
+		[...backBtns].forEach(btn => {
+			btn.addEventListener('click', () => {
+				inner.style.transform = 'translateX(0)';
+			});
+		})
+
+
 		// Delegate sliding
 		inner.addEventListener('click', e => {
 			const btn = e.target.closest('button[data-panel]');
 			if (btn) {
-			const idx = parseInt(btn.dataset.panel, 10);
-			inner.style.transform = `translateX(-${idx * 100}%)`;
+			inner.style.transform = `translateX(-${50}%)`;
 			return;
-			}
-			const back = e.target.closest('a[data-back]');
-			if (back) {
-			const idx = parseInt(back.dataset.back, 10);
-			inner.style.transform = `translateX(-${idx * 100}%)`;
-			e.preventDefault();
 			}
 		});
 	})();
