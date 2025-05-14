@@ -6,6 +6,12 @@
     overflow: hidden;
     z-index: 1000;
 }
+@media only screen and (min-width: 768px) {
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
 
 .mobile-menu-close {
     position: absolute;
@@ -52,10 +58,16 @@
     top: 0;
     bottom: 0;
     width: 100vw;
+    z-index: 10;
 }
 
 .submenu-panel .back a {
     font-weight: bold;
     margin-bottom: 1rem;
     display: inline-block;
+}
+
+.submenu-panel-inactive {
+    display: none;
+    z-index: 2;
 }

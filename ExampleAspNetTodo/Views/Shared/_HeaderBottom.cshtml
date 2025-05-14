@@ -58,13 +58,13 @@
 				<a asp-controller="Home" asp-action="Index" class="block w-full py-4 px-3 text-primary-600" aria-current="page">Home</a>
 			</li>
 			<li class="w-full">
-				<button data-panel="1" class="text-primary-600 inline-flex w-full items-center justify-between gap-1  px-3 py-4" type="button">
+				<button data-panel="header-panel-submenu-1" class="text-primary-600 inline-flex w-full items-center justify-between gap-1  px-3 py-4" type="button">
 					<p>Product</p>
 					<i class="fa-solid fa-angle-right text-md text-gray-500"></i>
 				</button>
 			</li>
 			<li class="w-full">
-				<button data-panel="2" class="text-primary-600 inline-flex w-full items-center justify-between gap-1 px-3 py-4" type="button">
+				<button data-panel="header-panel-submenu-2" class="text-primary-600 inline-flex w-full items-center justify-between gap-1 px-3 py-4" type="button">
 					<p>Product</p>
 					<i class="fa-solid fa-angle-right text-md text-gray-500"></i>
 				</button>
@@ -80,39 +80,39 @@
 			</li>
 		</ul>
 
-		<ul class="submenu-panel">
-			<li class="back">
-				<button class="submenu-panel-back-button" type="button">
+		<ul id="header-panel-submenu-1" class="submenu-panel submenu-panel-inactive">
+			<li class="back py-2">
+				<button class="submenu-panel-back-button text-gray-600" type="button">
 					<i class="fa-solid fa-angle-left text-md text-gray-500"></i>
 					Product
 				</button>
 			</li>
 			<li>
-				<a asp-controller="Home" asp-action="ProductCreate" class="block px-4 py-2 hover:bg-gray-100">Product Create</a>
+				<a asp-controller="Home" asp-action="ProductCreate" class="block px-4 py-2 text-primary-600 hover:bg-gray-100">Product Create</a>
 			</li>
 			<li>
-				<a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+				<a href="#" class="block px-4 py-2 text-primary-600 hover:bg-gray-100">Settings</a>
 			</li>
 			<li>
-				<a href="#" class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
+				<a href="#" class="block px-4 py-2 text-primary-600 hover:bg-gray-100">Earnings</a>
 			</li>
 		</ul>
 
-		<ul class="submenu-panel z-10 opacity-0">
-			<li class="back">
-				<a href="#" data-back="0">
+		<ul id="header-panel-submenu-2" class="submenu-panel submenu-panel-inactive">
+			<li class="back py-2">
+				<button class="submenu-panel-back-button text-gray-600" type="button">
 					<i class="fa-solid fa-angle-left text-md text-gray-500"></i>
 					Product
-				</a>
+				</button>
 			</li>
 			<li>
-				<a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
+				<a href="#" class="block px-4 py-2 text-primary-600 hover:bg-gray-100">Settings</a>
 			</li>
 			<li>
-				<a asp-controller="Home" asp-action="ProductCreate" class="block px-4 py-2 hover:bg-gray-100">Product Create</a>
+				<a asp-controller="Home" asp-action="ProductCreate" class="block px-4 py-2 text-primary-600 hover:bg-gray-100">Product Create</a>
 			</li>
 			<li>
-				<a href="#" class="block px-4 py-2 hover:bg-gray-100">Earnings</a>
+				<a href="#" class="block px-4 py-2 text-primary-600 hover:bg-gray-100">Earnings</a>
 			</li>
 		</ul>
 
@@ -126,6 +126,7 @@
 		const closeBtn = document.getElementById('close-btn');
 		const inner = document.getElementById('inner');
 		const backBtns = document.getElementsByClassName('submenu-panel-back-button');
+		const panels = Array.from(document.getElementsByClassName("submenu-panel-inactive"));
 
 
 		// Calculate width based on panels
@@ -156,8 +157,18 @@
 		inner.addEventListener('click', e => {
 			const btn = e.target.closest('button[data-panel]');
 			if (btn) {
-			inner.style.transform = `translateX(-${50}%)`;
-			return;
+				const panelId = btn.getAttribute("data-panel");
+				if(panelId){
+					panels.forEach(panel => {
+						panel.classList.add("submenu-panel-inactive");
+					})
+					const panel = document.getElementById(panelId);
+					panel.classList.remove("submenu-panel-inactive");
+					inner.style.transform = `translateX(-${50}%)`;
+				}else{
+					console.error("Id of menu is missing");
+				}
+				return;
 			}
 		});
 	})();
